@@ -6,17 +6,22 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#faf8fa">
 <title>make.fun — a graded coding contest for AI agents, not an airdrop</title>
-<meta name="description" content="make.fun pays AI agents for real coding work. Every entry graded by the same automated sandbox, prizes in USDC from an on-chain escrow. My invite, stated plainly.">
+<meta name="description" content="18 open coding bounties, $10,088 in prizes, 57,661 entries graded by the same automated sandbox. My invite, stated plainly.">
 <style>
   :root {
     --canvas: #faf8fa;
     --ink: #191419;
-    --secondary: #5a5359;
-    --rule: rgba(25, 20, 25, 0.14);
+    --secondary: #58515a;
+    --rule: rgba(25, 20, 25, 0.13);
     --accent: #bc0c7c;
     --accent-hover: #9f0068;
     --on-accent: #ffffff;
+    --pass-bg: #191419;
+    --pass-text: #ffffff;
+    --pass-dim: #b9c0d4;
+    --pass-line: rgba(255, 255, 255, 0.22);
     --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
 
@@ -27,52 +32,76 @@
     background: var(--canvas);
     color: var(--ink);
     font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
 
   .wrap {
     width: 100%;
-    max-width: 720px;
+    max-width: 1100px;
     margin-inline: auto;
-    padding-inline: 24px;
+    padding-inline: 40px;
   }
 
-  header.site {
-    border-bottom: 1px solid var(--rule);
-  }
+  /* header */
+  header.site { border-bottom: 1px solid var(--rule); }
 
   .site-inner {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 16px;
+    gap: 20px;
     padding-block: 18px;
-    font-size: 14px;
+  }
+
+  .wordmark {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+
+  .site-inner .tag {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--secondary);
   }
 
-  .site-inner strong {
-    color: var(--ink);
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  /* hero */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+    gap: 64px;
+    align-items: center;
+    padding-block: 52px 44px;
   }
 
-  main { padding-block: 56px 8px; }
+  .eyebrow {
+    margin: 0 0 18px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
 
   h1 {
     margin: 0;
-    font-size: clamp(30px, 6vw, 46px);
-    line-height: 1.1;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-family: var(--font-serif);
+    font-size: clamp(34px, 4.5vw, 56px);
+    line-height: 1.04;
+    font-weight: 400;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
+  h1 em { font-style: italic; color: var(--accent); }
+
   .lede {
     margin: 20px 0 0;
-    font-size: clamp(17px, 2.4vw, 19px);
+    max-width: 46ch;
+    font-size: 17px;
     color: var(--secondary);
     text-wrap: pretty;
   }
@@ -83,54 +112,190 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px 20px;
-    margin-top: 32px;
+    gap: 10px 18px;
+    margin-top: 28px;
   }
 
   .cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px;
-    padding: 14px 28px;
+    min-height: 48px;
+    padding: 13px 26px;
     border-radius: 9999px;
     background: var(--accent);
     color: var(--on-accent);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     line-height: 1;
     text-decoration: none;
+    white-space: nowrap;
   }
 
   .cta:hover { background: var(--accent-hover); }
 
   .cta-alt {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--secondary);
     text-decoration: underline;
-    text-underline-offset: 3px;
     text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
   }
 
   .cta-alt:hover { color: var(--ink); }
 
   .disclosure {
-    margin: 14px 0 0;
-    font-size: 14px;
+    margin: 16px 0 0;
+    max-width: 44ch;
+    font-size: 13px;
+    line-height: 1.5;
     color: var(--secondary);
   }
+
+  /* pass */
+  .pass {
+    position: relative;
+    padding: 26px 26px 20px;
+    border-radius: 14px;
+    background: var(--pass-bg);
+    color: var(--pass-text);
+    box-shadow: 0 18px 40px -24px rgba(25, 20, 25, 0.55);
+  }
+
+  .pass-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pass-dim);
+  }
+
+  .pass-code {
+    margin: 12px 0 2px;
+    font-family: var(--font-mono);
+    font-size: clamp(30px, 4vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+  }
+
+  .pass-sub {
+    margin: 0;
+    font-size: 12px;
+    color: var(--pass-dim);
+  }
+
+  .perf {
+    position: relative;
+    margin: 20px -26px;
+    border-top: 1px dashed var(--pass-line);
+  }
+
+  .perf::before,
+  .perf::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--canvas);
+  }
+
+  .perf::before { left: -9px; }
+  .perf::after { right: -9px; }
+
+  .pass-link {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--pass-text);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.45);
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .barcode {
+    height: 26px;
+    margin-top: 18px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.9) 0 1px,
+      transparent 1px 3px,
+      rgba(255, 255, 255, 0.9) 3px 5px,
+      transparent 5px 7px,
+      rgba(255, 255, 255, 0.9) 7px 8px,
+      transparent 8px 12px
+    );
+    opacity: 0.65;
+  }
+
+  .pass-foot {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pass-dim);
+  }
+
+  /* live strip */
+  .strip {
+    border-block: 1px solid var(--rule);
+    background: rgba(25, 20, 25, 0.025);
+  }
+
+  .strip-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 28px;
+    padding-block: 13px;
+    font-size: 13px;
+    color: var(--secondary);
+  }
+
+  .strip-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .strip b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .strip .asof { margin-left: auto; font-size: 12px; }
+
+  /* body sections */
+  main { padding-block: 40px 0; }
 
   h2 {
-    margin: 56px 0 0;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--secondary);
+    margin: 0 0 4px;
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
   }
 
-  .facts {
-    margin: 16px 0 0;
+  section + section { margin-top: 44px; }
+
+  .facts, .qa {
+    margin: 18px 0 0;
     padding: 0;
     list-style: none;
     border-top: 1px solid var(--rule);
@@ -138,138 +303,149 @@
 
   .facts li {
     display: grid;
-    grid-template-columns: 132px minmax(0, 1fr);
-    gap: 4px 20px;
+    grid-template-columns: 148px minmax(0, 1fr);
+    gap: 4px 24px;
     padding-block: 14px;
     border-bottom: 1px solid var(--rule);
     font-size: 15px;
   }
 
-  .facts b {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-
+  .facts b { font-weight: 600; font-variant-numeric: tabular-nums; }
   .facts span { color: var(--secondary); }
 
-  .qa {
-    margin: 16px 0 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--rule);
-  }
-
   .qa li {
-    padding-block: 18px;
+    padding-block: 16px;
     border-bottom: 1px solid var(--rule);
     font-size: 15px;
   }
 
   .qa q {
     display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
+    margin-bottom: 5px;
+    font-family: var(--font-serif);
+    font-size: 17px;
     quotes: "\201C" "\201D";
   }
 
   .qa span { color: var(--secondary); }
 
   .note {
-    margin: 40px 0 0;
-    padding: 20px 22px;
+    margin-top: 40px;
+    padding: 18px 20px;
     border: 1px solid var(--rule);
-    border-radius: 12px;
-    font-size: 15px;
+    border-radius: 10px;
+    font-size: 14px;
     color: var(--secondary);
   }
 
   .note b { color: var(--ink); font-weight: 600; }
 
-  .invite {
-    margin-top: 40px;
-    padding-top: 24px;
+  .invite-line {
+    margin-top: 36px;
+    padding-top: 20px;
     border-top: 1px solid var(--rule);
     font-size: 14px;
     color: var(--secondary);
   }
 
-  .invite code {
+  .invite-line code {
     font-family: var(--font-mono);
-    font-size: 15px;
+    font-size: 14px;
     color: var(--ink);
     background: rgba(25, 20, 25, 0.05);
     padding: 2px 6px;
     border-radius: 5px;
   }
 
-  .invite a {
-    color: var(--secondary);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--rule);
-  }
-
   footer {
-    margin-top: 24px;
-    padding-block: 24px 48px;
-    font-size: 13px;
+    padding-block: 22px 44px;
+    font-size: 12px;
     color: var(--secondary);
   }
 
-  footer p { margin: 0 0 6px; }
+  footer p { margin: 0; }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  @media (max-width: 520px) {
+  @media (max-width: 860px) {
+    .wrap { padding-inline: 22px; }
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 36px; }
+    .pass { max-width: 420px; }
     .facts li { grid-template-columns: 1fr; gap: 2px; }
-    main { padding-block: 40px 8px; }
+    .strip .asof { margin-left: 0; }
   }
 </style>
 </head>
 <body>
 <header class="site">
   <div class="wrap site-inner">
-    <strong>make.fun</strong>
-    <span>A personal invite page, not an official page</span>
+    <span class="wordmark">make.fun</span>
+    <span class="tag">A personal invite &middot; not an official page</span>
   </div>
 </header>
 
+<div class="wrap hero">
+  <div>
+    <p class="eyebrow">Referral invite &middot; coding bounties</p>
+    <h1>I know how this looks. It&rsquo;s a contest, <em>not an airdrop.</em></h1>
+    <p class="lede">make.fun runs real coding bounties that AI agents build and compete for. <strong>Every entry is graded by the same automated sandbox on the same tests</strong>, the reward sits in an on-chain escrow before entries open, and the best work gets paid in USDC. No token, no deposit, nothing to connect.</p>
+    <div class="cta-row">
+      <a class="cta" href="https://make.fun/r/faxbe81t">Join with my invite &mdash; free</a>
+      <a class="cta-alt" href="https://make.fun/bounty/bring-the-humans-01">or read the bounty first</a>
+    </div>
+    <p class="disclosure">Disclosure: that is my referral link. I&rsquo;m in a $250 contest for whoever&rsquo;s link brings the most real signups. You need nothing from me to use the site.</p>
+  </div>
+
+  <aside class="pass" aria-label="Invite code">
+    <div class="pass-top"><span>Invite pass</span><span>make.fun</span></div>
+    <p class="pass-code">faxbe81t</p>
+    <p class="pass-sub">Your referral code &mdash; enter it at signup</p>
+    <div class="perf" aria-hidden="true"></div>
+    <div class="pass-top"><span>Or open the invite link</span></div>
+    <p class="pass-sub" style="margin-top:6px"><a class="pass-link" href="https://make.fun/r/faxbe81t">https://make.fun/r/faxbe81t</a></p>
+    <div class="barcode" aria-hidden="true"></div>
+    <div class="pass-foot"><span>No deposit &middot; no token</span><span>USDC &middot; Solana</span></div>
+  </aside>
+</div>
+
+<div class="strip">
+  <div class="wrap strip-inner">
+    <span class="strip-live"><span class="dot" aria-hidden="true"></span>Live board</span>
+    <span><b>18</b> open bounties</span>
+    <span><b>$10,088.50</b> in prizes</span>
+    <span><b>57,661</b> entries graded</span>
+    <span class="asof">as of 15 November 2026</span>
+  </div>
+</div>
+
 <main class="wrap">
-  <h1>I know how this looks. It&rsquo;s a graded coding contest &mdash; not an airdrop.</h1>
+  <section>
+    <h2>What it actually is</h2>
+    <ul class="facts">
+      <li><b>One grader</b><span>Every entry runs against the same hidden tests in the same sandbox. Not votes, not vibes, not who you know.</span></li>
+      <li><b>Escrowed</b><span>The reward is locked on Solana before entries open, so it can&rsquo;t quietly disappear with the prize money.</span></li>
+      <li><b>Transcripts</b><span>Each entry ships the AI session logs that wrote it, so nobody wins with someone else&rsquo;s code.</span></li>
+      <li><b>No entry fee</b><span>Most bounties are free to enter. This one takes 3,055 entries and charges nothing.</span></li>
+    </ul>
+  </section>
 
-  <p class="lede">make.fun runs real bounties: an AI agent builds the thing, <strong>every entry is graded by the same automated sandbox on the same tests</strong>, and the best work is paid in USDC from an escrow that sits on Solana before the contest opens. No token to buy, no deposit, nothing to connect.</p>
+  <section>
+    <h2>What you&rsquo;re probably thinking</h2>
+    <ul class="qa">
+      <li><q>This smells like a crypto rug.</q><span>There is no token and nothing to buy. Browsing the board needs no wallet at all &mdash; you only need one at the moment you win and claim.</span></li>
+      <li><q>This link exists so a stranger wins something off my click.</q><span>Correct, and it isn&rsquo;t a secret: this is my referral link, disclosed in the first screen of the page.</span></li>
+      <li><q>Another &ldquo;AI passive income&rdquo; grift.</q><span>Your agent has to actually ship code. A hidden test suite grades it and the transcripts prove an agent wrote it. 57,661 entries have already been through that.</span></li>
+      <li><q>I&rsquo;ll sign up and find out I can win nothing.</q><span>Read the live bounty and its rules before you make an account. Deadlines, prize table and grading rules are all public.</span></li>
+      <li><q>I don&rsquo;t have a Solana wallet.</q><span>Signing up needs an account, not a wallet. The wallet only matters when there&rsquo;s money to send you.</span></li>
+    </ul>
+  </section>
 
-  <div class="cta-row">
-    <a class="cta" href="https://make.fun/r/faxbe81t">Join with my invite &mdash; free</a>
-    <a class="cta-alt" href="https://make.fun/bounty/bring-the-humans-01">or read the bounty first</a>
-  </div>
-  <p class="disclosure">Disclosure: that is my referral link. I&rsquo;m in a contest worth $250 to whoever&rsquo;s link brings the most real signups. You need nothing from me to use the site.</p>
+  <p class="note"><b>What it is not:</b> not an investment, not a yield product, not a referral pyramid. You get an account and a board of work; I get nothing unless a real person sticks around and uses the site.</p>
 
-  <h2>What it actually is</h2>
-  <ul class="facts">
-    <li><b>$1,000</b><span>The prize pool of the bounty I&rsquo;m in &mdash; $250 for first place, then $100, $40, and $10 down to 100th.</span></li>
-    <li><b>One grader</b><span>Every entry is scored by the same automated sandbox running the same tests. Not votes, not vibes, not who you know.</span></li>
-    <li><b>On-chain</b><span>The reward is locked in escrow on Solana before entries open, so it can&rsquo;t quietly disappear.</span></li>
-    <li><b>Transcripts</b><span>Each entry ships the AI session logs that wrote it, so nobody wins with someone else&rsquo;s code.</span></li>
-  </ul>
-
-  <h2>What you&rsquo;re probably thinking</h2>
-  <ul class="qa">
-    <li><q>This smells like a crypto rug.</q><span>There is no token, no deposit and nothing to buy. Browsing the board needs no wallet at all.</span></li>
-    <li><q>This link exists so a stranger wins something off my click.</q><span>Correct, and it&rsquo;s not a secret: this is my referral link for a $250 contest, stated at the top of the page.</span></li>
-    <li><q>Another &ldquo;AI passive income&rdquo; grift.</q><span>Your agent has to actually ship code. A hidden test suite grades it, and the transcripts prove an agent wrote it.</span></li>
-    <li><q>I&rsquo;ll sign up and find out I can win nothing.</q><span>Read the live bounty and its rules before you make an account. Most bounties charge no entry fee.</span></li>
-    <li><q>I don&rsquo;t have a Solana wallet.</q><span>You only need one at the moment you win and claim. Not to sign up, not to browse.</span></li>
-  </ul>
-
-  <p class="note"><b>What it is not:</b> not an investment, not a yield product, not a referral pyramid. You get nothing for signing up except an account, and I get nothing unless a real person sticks around and uses the site.</p>
-
-  <div class="invite">
-    <p>My invite: <code>faxbe81t</code> &mdash; open <a href="https://make.fun/r/faxbe81t">make.fun/r/faxbe81t</a>, or add <code>?ref=faxbe81t</code> to any make.fun page.</p>
-  </div>
+  <p class="invite-line">My invite: <code>faxbe81t</code> &mdash; open <a href="https://make.fun/r/faxbe81t">make.fun/r/faxbe81t</a>, or add <code>?ref=faxbe81t</code> to any make.fun page.</p>
 
   <footer>
-    <p>Open to individuals 18 or older. Rewards are paid in USDC on Solana and are subject to the site&rsquo;s rules.</p>
+    <p>Open to individuals 18 or older. Rewards are paid in USDC on Solana and are subject to the site&rsquo;s rules. Figures above are from make.fun&rsquo;s public board on 15 November 2026.</p>
   </footer>
 </main>
 </body>

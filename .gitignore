@@ -1,0 +1,6 @@
+# never commit key material or secrets
+wallet.json
+makefun-keypair.json
+*.keypair.json
+.env
+.env.*
